@@ -1,4 +1,4 @@
-import { ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION, CLEAR_DISPLAY } from './../actions';
+import { ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION, CLEAR_DISPLAY, ADD_TO_MEMORY } from './../actions';
 
 export const initialState = {
     total: 0,
@@ -43,9 +43,32 @@ const reducer = (state, action) => {
                 total: 0
             });
             
+        case(ADD_TO_MEMORY):
+            return ({
+                ...state,
+                memory: state.total
+            });
+            
+        // case(CLEAR_DISPLAY):
+        //     return ({
+        //         ...state,
+        //         total: 0
+        //     });
+
+        
+        // case(CLEAR_DISPLAY):
+        //     return ({
+        //         ...state,
+        //         total: 0
+        //     });
+
         default:
             return state;
     }
 }
+
+/*[ ] When `M+` is pressed, the current memory value should be set to the current total value. Test by seeing the result of memory in the UI.
+* [ ] When `MR` is pressed, the current memory value should be applied to the current total value(See the APPLY_NUMBER case). Test by adding a value to memory and then seeing if the total updates correctly when pressed.
+* [ ] When `MC` is pressed, the current memory value should be set to zero. Test by adding a value to memory and then seeing the memory value reset to zero when pressed. */
 
 export default reducer;
